@@ -1,31 +1,29 @@
 // Declaration
-const generate = document.querySelector("#gridgen");                         //button click to create the grid
+const play = document.querySelector("#gridgen");                         //button click to create the grid
 const container_bottom = document.querySelector(".container_bottom");       //bottom part of container
-const squareEl = document.querySelector(".square");
+let squareEl = document.querySelector(".square");
+let gridGenerated = false;
 
 
 
 //button click generate the grid or reset it
-generate.addEventListener("click",
+play.addEventListener("click",
     function () {
-        container_bottom.classList.toggle("d-none");    //seek or see the grid
-
-        if (!container_bottom.classList.contains("d-none")) {  //if the grid there aren't 
+        if (!gridGenerated) {  //if the grid there aren't 
+            container_bottom.classList.remove("d-none");
+            gridGenerated = true;
             generateGrid();                           // generate it
-            squareEl = document.querySelector(".square");
-        } else {                                            //else reset and seek it
-            resetGrid();
+        } else {                                            //else return
+            return;
         }
     }
 );
 
 
-//grid/squares interaction 
 squareEl.addEventListener("click",
     function () {
         console.log(squareEl.classList);
     }
-
 );
 
 
@@ -51,7 +49,7 @@ squareEl.addEventListener("click",
 function generateGrid() {
     const gridEl = document.querySelector(".grid");  //grid element
     for (let i = 0; i < 100; i++) {
-        gridEl.innerHTML += `<div class="square"></div>`;
+        gridEl.innerHTML += `<div class="square">${i + 1}</div>`;
     }
 }
 
