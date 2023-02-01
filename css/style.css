@@ -1,0 +1,48 @@
+/* Reset Css */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* GENERICS */
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* UTILS */
+.d-none {
+    display: none;
+}
+
+
+/* CLASSES */
+.grid {
+    display: flex;
+    flex-wrap: wrap;
+    width: 700px;
+    height: 700px;
+    background-color: royalblue;
+    border: 1px white black;
+    cursor: crosshair;
+}
+
+.grid .square {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    width: calc((100%/10));
+    height: calc((100%/10));
+    border: 2px black solid;
+}
+
+.square:hover {
+    background-color: rgb(103, 194, 103);
+}
