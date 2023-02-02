@@ -46,7 +46,3 @@
     height: calc((100%/10));
     border: 2px black solid;
 }
-
-.square:hover {
-    background-color: rgb(103, 194, 103);
-}

@@ -1,7 +1,7 @@
 // Declaration
 const play = document.querySelector("#gridgen");                         //button click to create the grid
 const container_bottom = document.querySelector(".container_bottom");       //bottom part of container
-let squareEl = document.querySelector(".square");
+const gridEl = document.querySelector(".grid");  //grid element
 let gridGenerated = false;
 
 
@@ -9,31 +9,14 @@ let gridGenerated = false;
 //button click generate the grid or reset it
 play.addEventListener("click",
     function () {
-        if (!gridGenerated) {  //if the grid there aren't 
-            container_bottom.classList.remove("d-none");
-            gridGenerated = true;
+        container_bottom.classList.toggle("d-none");
+        if (!container_bottom.classList.contains("d-none")) {  //if the grid there aren't 
             generateGrid();                           // generate it
-        } else {                                            //else return
-            return;
+        } else {                                            //else reset
+            resetGrid();
         }
     }
 );
-
-
-squareEl.addEventListener("click",
-    function () {
-        console.log(squareEl.classList);
-    }
-);
-
-
-
-
-
-
-
-
-
 
 
 
@@ -47,9 +30,20 @@ squareEl.addEventListener("click",
 
 
 function generateGrid() {
-    const gridEl = document.querySelector(".grid");  //grid element
+
     for (let i = 0; i < 100; i++) {
-        gridEl.innerHTML += `<div class="square">${i + 1}</div>`;
+
+        let squareEl = document.createElement("div");
+        squareEl.classList.add("square");
+
+        squareEl.addEventListener("click",
+            function () {
+                console.log(this.classList);
+            }
+        );
+
+        gridEl.append(squareEl);
+        squareEl.innerHTML = `${i + 1}`;
     }
 }
 
