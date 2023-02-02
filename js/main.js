@@ -12,15 +12,17 @@ play.addEventListener("click",
         const gridEl = document.querySelector(".grid");              //grid element declaration
         const difficulty = document.querySelector("#difficulty");   //difficulty element declaration
 
+        play.innerHTML = "PLAY";
+
         gridEl.classList.toggle("d-none"); //insert and remove grid visibility
         if (!gridEl.classList.contains("d-none")) {  //if the grid there aren't 
             let rangemax = generateGrid(gridEl, difficulty);                           // generate it
             generateBomb(rangemax);          //bomb generating and placement
 
 
-            for (let i = 0; i < 16; i++) {
-                console.log(bombPlacement[i]);
-            }
+            // for (let i = 0; i < 16; i++) {
+            //     console.log(bombPlacement[i]);  DEBUG
+            // }
         } else {                                            //else reset
             resetGrid(gridEl);
         }
@@ -62,6 +64,7 @@ function generateGrid(gridEl, difficulty) {
                         this.classList.add("game_over");
                         bombfind = true;
                         alert(`Hai perso, hai conquistato ${cellSelectedCounter} celle`);
+                        play.innerHTML = "RESTART"
                     }
 
                 }
@@ -73,7 +76,7 @@ function generateGrid(gridEl, difficulty) {
                 }
                 bombfind = false;//reset bombfind
 
-                console.log(this.classList);
+                // console.log(this.classList); DEBUG
             }
         );
 
