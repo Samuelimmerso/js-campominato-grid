@@ -25,6 +25,10 @@
     opacity: 0;
 }
 
+.bgGreen {
+    background-color: rgb(90, 166, 90);
+}
+
 
 /* CLASSES */
 .grid {
