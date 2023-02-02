@@ -2,6 +2,7 @@
 const play = document.querySelector("#gridgen");                         //button click to create the grid
 const container_bottom = document.querySelector(".container_bottom");       //bottom part of container
 const gridEl = document.querySelector(".grid");  //grid element
+let squareEl = [];
 let gridGenerated = false;
 
 
@@ -35,6 +36,9 @@ function generateGrid() {
 
         let squareEl = document.createElement("div");
         squareEl.classList.add("square");
+
+        // gridEl.innerHTML += `<div class="square">${i + 1}</div>`;
+        // squareEl = document.querySelector(".square");
 
         squareEl.addEventListener("click",
             function () {
