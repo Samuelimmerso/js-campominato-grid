@@ -26,15 +26,14 @@ play.addEventListener("click",
             let rangemax = generateGrid(gridEl, difficulty);                           // generate it
             generateBomb(rangemax);          //bomb generating and placement
 
-
-            // for (let i = 0; i < 16; i++) {
-            //     console.log(bombPlacement[i]);  DEBUG
-            // }
         } else {                                            //else reset
             resetGrid(gridEl);
         }
     }
 );
+
+
+
 
 
 
@@ -93,7 +92,7 @@ function generateGrid(gridEl, difficulty) {
 
 
 
-                // console.log(this.classList); DEBUG
+
             }
         );
 
