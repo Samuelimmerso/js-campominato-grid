@@ -1,8 +1,9 @@
 // Declaration
 const play = document.querySelector("#gridgen");                         //button click to create the grid
 const container_bottom = document.querySelector(".container_bottom");       //bottom part of container
+const resultEl = document.querySelector(".result");                           //output result element
 let bombPlacement = [];                                                     //bomb placement var
-let cellSelectedCounter = 0, bombfind = false;                                        // number of cells selected before game over
+let cellSelectedCounter, bombfind;                                        // number of cells selected before game over
 
 
 
@@ -14,8 +15,14 @@ play.addEventListener("click",
 
         play.innerHTML = "PLAY";
 
+        // RESET VARIABILI DI CONTROLLO e risultato
+        bombfind = false;
+        cellSelectedCounter = 0;
+        resultEl.innerHTML = "";
+
         gridEl.classList.toggle("d-none"); //insert and remove grid visibility
         if (!gridEl.classList.contains("d-none")) {  //if the grid there aren't 
+            play.innerHTML = "RESTART"
             let rangemax = generateGrid(gridEl, difficulty);                           // generate it
             generateBomb(rangemax);          //bomb generating and placement
 
@@ -56,25 +63,35 @@ function generateGrid(gridEl, difficulty) {
 
         squareEl.addEventListener("click",
             function () {
-
-                //bomb presence control
                 for (let i = 0; i < 16; i++) {
-
-                    if (this.value == bombPlacement[i]) {
-                        this.classList.add("game_over");
-                        bombfind = true;
-                        alert(`Hai perso, hai conquistato ${cellSelectedCounter} celle`);
-                        play.innerHTML = "RESTART"
-                    }
-
+                    console.log(bombPlacement[i]);
                 }
-
                 // se la bomba non è stata trovata
                 if (bombfind == false) {
+
+                    //bomb presence control
+                    for (let i = 0; i < 16; i++) {
+
+                        if (this.value == bombPlacement[i]) {
+                            this.classList.add("game_over");
+                            bombfind = true;
+                            resultEl.innerHTML = `Hai perso, hai conquistato ${cellSelectedCounter} celle`;
+
+
+                        }
+
+                    }
+
                     this.classList.add("active");
                     cellSelectedCounter += 1;
+
+                    //win
+                    if (cellsNumber[difficulty.value - 1] - 16 == cellSelectedCounter) {
+                        resultEl.innerHTML = `Complimenti hai vinto, hai conquistato ${cellSelectedCounter} celle`;
+                    }
                 }
-                bombfind = false;//reset bombfind
+
+
 
                 // console.log(this.classList); DEBUG
             }
@@ -105,6 +122,7 @@ function generateBomb(rangemax) {
                 bombPlacement[i] = Math.floor(Math.random() * rangemax) + 1;  //replace it
             }
         }
+
 
 
     }
